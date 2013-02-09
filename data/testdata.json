@@ -1,0 +1,22 @@
+{
+	Foothill:{
+		Breakfast:["Tater tots", "Omlettes", "Fruit"],
+		Lunch:["Potato Wedges","Cake"],
+		Dinner:["Sweet Potatoes","Fish","Eggs"]
+	}
+	CKC:{
+		Breakfast:["Vegetarian Lasagna", "Vegetarian Steak", "Fruit"],
+		Lunch:["Vegetarian meat", "Vegetarian vegetables", "Omlettes"],
+		Dinner:["Sweet Potatoes", "Fish", "Aesbestos"]
+	},
+	Cafe3:{
+		Breakfast:["Brussels Sprouts","Fruit"],
+		Lunch:["Vegetarian meat", "Sausage", "Chicken Soup"],
+		Dinner:["Tater tots", "Cake"]
+	},
+	Crossroads{
+		Breakfast:["Omlettes","Fruit", "Milk"],
+		Lunch:["Cereal", "Vegetarian meat"],
+		Dinner:["French Fries", "Aesbestos"]
+	}
+}
