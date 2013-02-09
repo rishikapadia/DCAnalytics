@@ -1,0 +1,19 @@
+{
+	'Foothill': {
+		'Breakfast':['fries','potato','dried raisins','frosting cup'],
+		'Lunch':[etc],
+		'Dinner':[etc],
+	},
+	'CKC':{
+		'Breakfast':['sweet potato fries', fries','potato','dried raisins','frosting cup'],
+		'Lunch':[etc],
+		'Dinner':[etc],
+	},
+	'Cafe 3':{
+		'Breakfast':['fries','potato','dried raisins','frosting cup'],
+		'Lunch':[etc],
+		'Dinner':[etc],
+	},
+	et cetera
+
+}
