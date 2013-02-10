@@ -4,9 +4,18 @@ dcFood = {"Foothill":{'breakfast':['fries']}};
 prefs = {"fries":5};
 function Rating(dcFood, prefs){
 
+<<<<<<< HEAD
 	var result = {};  
 		// dictionary of dictionaries to contain ratings for each site/mealtime
 	for (var site in dcFood.keys)
+=======
+function Rating(foodGroup, prefs){
+
+	var result = {};  
+		// dictionary of dictionaries to contain ratings for each site/mealtime
+
+	for (var site in foodgroup.keys) //For each site..
+>>>>>>> fe7b9cffee7a547749f632e44e99f7b7f6f063e9
 	{
 		var items = 0;
 		result[site] = {};
@@ -38,5 +47,6 @@ document.write(x);
 /* OUTPUT
  *  result = {site1: {'Breakfast': #, 'Lunch': #, 'Dinner': #},
  *			  site2: {...},
- *			  site3: {...}}
+ *			  site3: {...}
+ *            ...}
  */
