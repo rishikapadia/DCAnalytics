@@ -71,12 +71,49 @@ function meal(input, place, type)
 	return output;
 }
 
+// where all the magic happens!
 function parserWrapper(data){
 	var parsed = parser(data);
 	var all_food_list = allFood(parsed);
-	document.write(all_food_list);
+	var ratings = rating({"Foothill": {'breakfast': ['fries', 'potato', 'cake'], 'lunch': ['john', 'bill', 'rohan'], 'dinner': []}, 'Clark Kerr': {'breakfast': ['b1', 'b2', 'b3'], 'lunch': [], 'dinner': ['d1', 'd2', 'd3']}}, {'fries': -2, 'potato': -1, 'cake': 3, 'john': -5, 'bill': -3, 'rohan': -5, 'b1': 4, 'b2': 3, 'b3': -4, 'd1': 0, 'd2': 1, 'd3': 2});
+	document.write(window.JSON.stringify(ratings));
 	console.log(parsed);
 }
+
+// calculates rating for each meal time for each dining hall, given dictionary of place to food and dictionary of preferences
+function rating(dcFood, prefs) {
+
+	var result = {};  // dictionary of dictionaries to contain ratings for each site/mealtime
+
+	for (var site in dcFood) //For each site..
+	{
+		result[site] = {};
+		
+		for (var mealTime in dcFood[site])    //Breakfast, Lunch, and Dinner
+		{
+			var items = 0;
+			result[site][mealTime] = 0;    //total rating so far
+			for (var i = 0; i < dcFood[site][mealTime].length; i++)
+			{
+				curr = dcFood[site][mealTime][i];
+				result[site][mealTime] += prefs[curr];
+				items++;
+			}
+			if(items == 0)
+			{
+				result[site][mealTime] = "Closed";
+			}
+			else
+			{
+				result[site][mealTime] /= Math.sqrt(items); //determine projection
+				result[site][mealTime] = result[site][mealTime] / (items*5/Math.sqrt(items)) * 5 + 5; //actual rating
+				//dividing by vector magnitude
+			}
+		}
+	}
+	return result;
+}
+
 
 // input: dictionary from places to food. output: list of all food, excluding duplicates
 function allFood(parsed)
@@ -98,5 +135,6 @@ function allFood(parsed)
 	}
 	return list;
 }
+
 
 getLineArrayHtml(DCURL,parserWrapper);
