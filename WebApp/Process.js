@@ -1,12 +1,12 @@
 // Rishi Kapadia & Robert 
 // 2-9-13
 
-Function Rating(foodGroup, prefs){
+function Rating(foodGroup, prefs){
 
 	var result == {};  
 		// dictionary of dictionaries to contain ratings for each site/mealtime
 
-	for (var site in foodgroup.keys)
+	for (var site in foodgroup.keys) //For each site..
 	{
 		var items = 0;
 		result[site] = {};
