@@ -6,14 +6,14 @@ function parserWrapper(data){
 	parsed = parser(data);
 	var all_food_list = allFood(parsed);
 	//var pref_list = code_name(all_food_list);
-        populate(all_food_list); 
+	populate(all_food_list); 
 	//var rating_list = rating(parsed, pref_list); // work with this for UI
 }
 
 function submit(){
 	pref_list = save();
-        var rating_list = rating(parsed, pref_list);
-
+	var rating_list = rating(parsed, pref_list);
+	analyze(rating_list);
 }
 
 
@@ -31,6 +31,7 @@ function getRawHtml(url,onLoad,onFail=function(data){}){
 			onFail(data);
 		}
 	});
+	
 }
 
 function getLineArrayHtml(url, onLoad, onFail = function(data){}){
@@ -89,6 +90,9 @@ function meal(input, place, type)
 }
 
 
+function sorcery(n){
+	return Math.round(n*10)/10
+}
 
 // calculates rating for each meal time for each dining hall, given dictionary of place to food and dictionary of preferences
 function rating(dcFood, prefs) {
@@ -116,7 +120,7 @@ function rating(dcFood, prefs) {
 			else
 			{
 				result[site][mealTime] /= Math.sqrt(items); //determine projection
-				result[site][mealTime] = result[site][mealTime] / (items*5/Math.sqrt(items)) * 5 + 5; //actual rating
+				result[site][mealTime] = sorcery(result[site][mealTime] / (items*5/Math.sqrt(items)) * 5 + 5); //actual rating
 				//dividing by vector magnitude
 			}
 		}

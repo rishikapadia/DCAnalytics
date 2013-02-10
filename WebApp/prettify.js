@@ -1,5 +1,4 @@
-var BLUEGRADIENT="\
-				background: -moz-linear-gradient(top,  #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%); /* FF3.6+ */\
+var BLUEGRADIENT="\ background: -moz-linear-gradient(top,  #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%); /* FF3.6+ */\
 				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1e5799), color-stop(50%,#2989d8), color-stop(51%,#207cca), color-stop(100%,#7db9e8)); /* Chrome,Safari4+ */\
 				background: -webkit-linear-gradient(top,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* Chrome10+,Safari5.1+ */\
 				background: -o-linear-gradient(top,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* Opera 11.10+ */\
@@ -38,16 +37,28 @@ var REDGRADIENT="\
 				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00dc9a', endColorstr='#ff2503',GradientType=0 ); /* IE6-9 */\
 				"
 var DIVTEMPLATE='\
-				<div style="{2}width:50%;height:5em;color:black;border:1px solid gray; border-radius:15px; background-color:#ff0000;position:relative; vertical-align:middle;">\
-				<div style="width:25%;float:left;">\
+				<div style="{1}width:50%;height:5em;color:black;border:1px solid gray; border-radius:15px; background-color:#ff0000;position:relative; vertical-align:middle;">\
+				<div style="width:35%;float:left;">\
 				<h1>\
 				&nbsp {0}\
 				</h1>\
 				</div>\
 				<div style="width:15%; float:right;">\
 				<table>\
-				<tr><td>Score</td></tr>\
-				<tr><td bgcolor="white" align="center" height="40px">{1}</td></tr>\
+				<tr><td>Dinner</td></tr>\
+				<tr><td bgcolor="white" align="center" height="40px">{4}</td></tr>\
+				</table>\
+				</div>\
+				<div style="width:15%; float:right;">\
+				<table>\
+				<tr><td>Lunch</td></tr>\
+				<tr><td bgcolor="white" align="center" height="40px">{3}</td></tr>\
+				</table>\
+				</div>\
+				<div style="width:15%; float:right;">\
+				<table>\
+				<tr><td>Breakfast</td></tr>\
+				<tr><td bgcolor="white" align="center" height="40px">{2}</td></tr>\
 				</table>\
 				</div>\
 				</div>\
@@ -77,21 +88,19 @@ if (!String.prototype.format) {
 
 
 function generateUserDisplayHTML(mealsResults){
-    var html = "";
-	for (var site in mealsResults.keys)
+    var html = "<center>";
+	for (var site in mealsResults)
 	{
-		for (var mealTime in site.keys)
-		{
-			html += generateHTML(site, rating);
-		}
+		html+="<br/>"
+		html += generateHTML(site, mealsResults[site]["breakfast"], mealsResults[site]["lunch"], mealsResults[site]["dinner"]);
 	}
-	return html
+	return html + "</center>"
 }	
 
 
-function generateHTML(DCSite, rating){
+function generateHTML(DCSite, brating, lrating, drating){
 	var grad = gradient[DCSite];
-	return DIVTEMPLATE.format(DCSite, rating, grad);
+	return DIVTEMPLATE.format(DCSite, grad, brating, lrating, drating);
 }
 
 

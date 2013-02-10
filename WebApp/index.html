@@ -4,7 +4,8 @@
 		<!--Standard Imports-->
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 		<script src="bootstrap/js/bootstrap.js"></script>
-                <link rel="stylesheet" type="text/css" href="preferences.css"/>
+		<script src="https://raw.github.com/padolsey/jQuery-Plugins/master/cross-domain-ajax/jquery.xdomainajax.js"></script>
+		<link rel="stylesheet" type="text/css" href="preferences.css"/>
 		<!--Our Imports-->
 
 		<!--Stylesheet-->
@@ -100,9 +101,12 @@
 		     for(var i = 0 ; i<food_list.length ; i++){
 		       addRow(food_list[i]);
 		     }
+			 $("input").each(function(i,v){v.value=0});
 		   }
 
 	  </script>
+	  <script src="prettify.js"></script>
+	  <script src="scraper.js"></script>
  
 	</head>
 	<body>
@@ -121,10 +125,12 @@
 					<th>Preference</th>
 	      			</tr>
 
-	      			<tr>
+					<!--
+					<tr>
 					<td>Pizza</td>
 					<td><input type="range" id="1" min="-5" max="5" value = "0" onChange="showValue(parseInt(this.value),1)"/><p id="value1">Meh</p></td>
-	      			</tr>
+					</tr>
+					-->
 
 
 	    		</tbody>
