@@ -72,9 +72,21 @@
       
       cell2.appendChild(slider);
       cell2.appendChild(value); 
-   } 
+   }; 
 
+   function save(){
+      var table = $("#prefs");
+      var rows = table.children().children();
+      var rowCount = rows.length;
+      var preferences = {};
+      for(var i=1 ; i<(rowCount) ; i++){
+        var food = rows[i].children[0].innerHTML;
+        var slider_id = "#"+i;
+        preferences[food] = parseInt($(slider_id).val());
+      }
+      return preferences;
 
+   };
 
   </script>
 </head>
@@ -95,7 +107,7 @@
     </tbody>
   </table>
  
-  <button id="submit">Submit</button>
+  <button id="submit" onclick="save()">Save</button>
 
 </body>
 </html>
