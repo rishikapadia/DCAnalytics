@@ -4,10 +4,106 @@
 		<!--Standard Imports-->
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 		<script src="bootstrap/js/bootstrap.js"></script>
+                <link rel="stylesheet" type="text/css" href="preferences.css"/>
 		<!--Our Imports-->
 
 		<!--Stylesheet-->
-		<link href="bootstrap/css/bootstrap.css" rel="stylesheet" media="screen"> 
+		<link href="bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+
+                <script type="text/javascript">
+		    function showValue(newValue, id)
+		    {
+		      var output = "#value" + id;
+
+		      switch(newValue){
+			case -5:
+			  $(output).text("Total Shit");
+			  break;
+			case -4:
+			  $(output).text("Disgusting");
+			  break;
+			case -3:
+			  $(output).text("Terrible");
+			  break;
+			case -2:
+			  $(output).text("Bad");
+			  break;
+			case -1:
+			  $(output).text("Do I have to eat it?");
+			  break;
+			case 0:
+			  $(output).text("Meh");
+			  break;
+			case 1:
+			  $(output).text("Fine, I'll eat it");
+			  break;
+			case 2:
+			  $(output).text("Passable");
+			  break;
+			case 3:
+			  $(output).text("Good");
+			  break;
+			case 4:
+			  $(output).text("Great");
+			  break;
+			case 5:
+			  $(output).text("OMGTHISISAWESOME");
+			  break;
+			default:
+			  $(output).text("this shouldn't happen");
+			  break;
+
+		      }
+		    };
+
+		    function addRow(foodItem) {
+		 
+		      var table = document.getElementById("prefs");
+		 
+		      var rowCount = table.rows.length;
+		      var row = table.insertRow(rowCount);
+		 
+		      var cell1 = row.insertCell(0);
+		      cell1.innerHTML = foodItem;
+
+		      var cell2 = row.insertCell(1);
+		      var slider = document.createElement("input");
+		      slider.type="range";
+		      slider.id = rowCount;
+		      slider.min = -5;
+		      slider.max = 5;
+		      slider.onchange = function(){showValue(parseInt(this.value),parseInt(this.id));};
+
+		      var value = document.createElement("p");
+		      value.innerHTML = "Meh";
+		      value.id = "value" + rowCount;
+		      
+		      cell2.appendChild(slider);
+		      cell2.appendChild(value); 
+		   }; 
+
+		   function save(){
+		      var table = $("#prefs");
+		      var rows = table.children().children();
+		      var rowCount = rows.length;
+		      var preferences = {};
+		      for(var i=1 ; i<(rowCount) ; i++){
+			var food = rows[i].children[0].innerHTML;
+			var slider_id = "#"+i;
+			preferences[food] = parseInt($(slider_id).val());
+		      }
+		      return preferences;
+
+		   };
+
+		   function populate(food_list){
+		     for(var i = 0 ; i<food_list.length ; i++){
+		       addRow(food_list[i]);
+		     }
+		   }
+
+	  </script>
+ 
 	</head>
 	<body>
 		<div id="controlpanel">
@@ -19,7 +115,22 @@
 		</div>
 		<div id="preferences">
 			preferences
-			<!--NITIN PUT YOUR STUFF HERE-->
+			<table id="prefs" style="text-align:left">
+		   	<tbody>
+	      			<tr>
+					<th>Food Item</th>
+					<th>Preference</th>
+	      			</tr>
+
+	      			<tr>
+					<td>Pizza</td>
+					<td><input type="range" id="1" min="-5" max="5" value = "0" onChange="showValue(parseInt(this.value),1)"/><p id="value1">Meh</p></td>
+	      			</tr>
+
+
+	    		</tbody>
+	  		</table>
+
 		</div>
 		<div id="userdisplay">
 			userdisplay

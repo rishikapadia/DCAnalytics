@@ -2,6 +2,7 @@
 <head>
   <link rel="stylesheet" type="text/css" href="preferences.css"/>
   <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script type="text/javascript" src="scraper.js"></script>
   <script type="text/javascript">
     function showValue(newValue, id)
     {
@@ -87,6 +88,12 @@
       return preferences;
 
    };
+
+   function populate(food_list){
+     for(var i = 0 ; i<food_list.length ; i++){
+       addRow(food_list[i]);
+     }
+   }
 
   </script>
 </head>
