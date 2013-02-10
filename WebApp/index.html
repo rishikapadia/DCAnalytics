@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--Standard Imports-->
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="bootstrap/js/bootstrap.js"></script>
+		<!--Our Imports-->
+
+		<!--Stylesheet-->
+		<link href="bootstrap/css/bootstrap.css" rel="stylesheet" media="screen"> 
+	</head>
+	<body>
+		<div id="controlpanel">
+			<h1 align="center">Dining Commons Analytics</h1>
+			<div align="center" class="row">
+				<a href="#" id="analyze_btn" class="btn btn-success"><div class="span3">Analyze</div></a>
+				<a href="#" id="edit_btn" class="btn btn-warning"><div class="span3">Edit Preferences</div></a>
+			</div>
+		</div>
+		<div id="preferences">
+			<!--NITIN PUT YOUR STUFF HERE-->
+		</div>
+		<div id="userdisplay">
+			userdisplay
+		</div>
+		<script>
+			$("#preferences").hide();
+			$("#userdisplay").hide();
+			$("#analyze_btn").click(function(e){
+				$("#preferences").hide();
+				$("#userdisplay").show();
+				e.preventDefault();
+			})
+			$("#edit_btn").click(function(e){
+				$("#preferences").show();
+				$("#userdisplay").hide();
+				e.preventDefault();
+			})
+		</script>
+	</body>
+</html>
