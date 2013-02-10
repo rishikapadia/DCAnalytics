@@ -3,7 +3,7 @@
 
 function Rating(foodGroup, prefs){
 
-	var result == {};  
+	var result = {};  
 		// dictionary of dictionaries to contain ratings for each site/mealtime
 
 	for (var site in foodgroup.keys) //For each site..
