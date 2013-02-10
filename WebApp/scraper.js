@@ -1,5 +1,14 @@
 var DCURL="http://services.housing.berkeley.edu/FoodPro/dining/static/todaysentrees.asp"
 
+// where all the magic happens!
+function parserWrapper(data){
+	var parsed = parser(data);
+	var all_food_list = allFood(parsed);
+	var pref_list = code_name(all_food_list);
+	var rating_list = rating(parsed, pref_list); // work with this for UI
+}
+
+
 function getRawHtml(url,onLoad,onFail=function(data){}){
 	var data=null;
 	$.ajax({
@@ -71,12 +80,7 @@ function meal(input, place, type)
 	return output;
 }
 
-// where all the magic happens!
-function parserWrapper(data){
-	var parsed = parser(data);
-	var all_food_list = allFood(parsed);
-	console.log(parsed);
-}
+
 
 // calculates rating for each meal time for each dining hall, given dictionary of place to food and dictionary of preferences
 function rating(dcFood, prefs) {
@@ -134,5 +138,4 @@ function allFood(parsed)
 	return list;
 }
 
-
-getLineArrayHtml(DCURL,parserWrapper);
+getLineArrayHtml(DCURL, parserWrapper);
