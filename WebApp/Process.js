@@ -45,5 +45,6 @@ Function mealRating(meal, foodgroup, prefs){
 /* OUTPUT
  *  result = {site1: {'Breakfast': #, 'Lunch': #, 'Dinner': #},
  *			  site2: {...},
- *			  site3: {...}}
+ *			  site3: {...}
+ *            ...}
  */
