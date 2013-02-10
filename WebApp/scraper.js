@@ -69,8 +69,38 @@ function meal(input, place, type)
 	return output;
 }
 
+function rating(dcFood, prefs){
+
+	var result = {};  // dictionary of dictionaries to contain ratings for each site/mealtime
+	for (var site in dcFood.keys)
+	{
+		var items = 0;
+		result[site] = {};
+		
+		for (var mealTime in dcFood[site])    //Breakfast, Lunch, and Dinner
+		{
+			result[site][mealTime] = 0;    //total rating so far
+			for (int i = 0; i<dcFood[site][mealTime].length;i++)
+			{
+				curr = dcFood[site][mealTime][i];
+				result[site][mealTime] += prefs[curr];
+				items++;
+			}
+		}
+		if(items == 0){
+			result[site][mealTime] = "Closed";
+		} else {
+			result[site][mealTime] /= resultMath.sqrt(items); //determine projection
+			result[site][mealTime] /= (items*5/resultMath.sqrt(items)) * 5 + 5; //actual rating
+				//dividing by vector magnitude
+		}
+	}
+	return result;
+}
+
 function parserWrapper(data){
 	var parsed=parser(data);
+
 	console.log(parsed);
 }
 

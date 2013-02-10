@@ -24,7 +24,6 @@ function toLineArray(data){
 	return data.split("\n");
 }
 
-// creates dictionary from place to food, given lines of HTML separated by \n
 function parser(input)
 {
 	crossroads_breakfast = meal(input, "pickMenu.asp?locationNum=01", "name=\"Breakfast\"");
@@ -53,7 +52,6 @@ function parser(input)
 		{"breakfast": crossroads_breakfast, "lunch": crossroads_lunch, "dinner": crossroads_dinner}}
 }
 
-//helper for function parser
 function meal(input, place, type)
 {
  
@@ -71,32 +69,38 @@ function meal(input, place, type)
 	return output;
 }
 
-function parserWrapper(data){
-	var parsed = parser(data);
-	var all_food_list = allFood(parsed);
-	document.write(all_food_list);
-	console.log(parsed);
-}
+function rating(dcFood, prefs){
 
-// input: dictionary from places to food. output: list of all food, excluding duplicates
-function allFood(parsed)
-{
-	var list = [];
-	for (var place in parsed)
+	var result = {};  // dictionary of dictionaries to contain ratings for each site/mealtime
+	for (var site in dcFood.keys)
 	{
-		for (var time in parsed[place])
+		var items = 0;
+		result[site] = {};
+		
+		for (var mealTime in dcFood[site])    //Breakfast, Lunch, and Dinner
 		{
-			for (var i = 0; i < parsed[place][time].length; i++)
+			result[site][mealTime] = 0;    //total rating so far
+			for (int i = 0; i<dcFood[site][mealTime].length;i++)
 			{
-				current_element = parsed[place][time][i];
-				if(list.indexOf(current_element) == -1)
-				{
-					list.push(current_element);
-				}
+				curr = dcFood[site][mealTime][i];
+				result[site][mealTime] += prefs[curr];
+				items++;
 			}
 		}
+		if(items == 0){
+			result[site][mealTime] = "Closed";
+		} else {
+			result[site][mealTime] /= resultMath.sqrt(items); //determine projection
+			result[site][mealTime] /= (items*5/resultMath.sqrt(items)) * 5 + 5; //actual rating
+				//dividing by vector magnitude
+		}
 	}
-	return list;
+	return result;
+}
+
+function parserWrapper(data){
+	var parsed=parser(data);
+	console.log(parsed);
 }
 
 getLineArrayHtml(DCURL,parserWrapper);
