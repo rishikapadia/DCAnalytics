@@ -17,7 +17,7 @@ function submit(){
 }
 
 
-function getRawHtml(url,onLoad,onFail=function(data){}){
+function getRawHtml(url,onLoad){
 	var data=null;
 	$.ajax({
 		url: url,
@@ -28,14 +28,13 @@ function getRawHtml(url,onLoad,onFail=function(data){}){
 		},
 		failure: function(res){
 			data="FAILURE";
-			onFail(data);
 		}
 	});
 	
 }
 
-function getLineArrayHtml(url, onLoad, onFail = function(data){}){
-	getRawHtml(url,function(data){onLoad(toLineArray(data))},onFail);
+function getLineArrayHtml(url, onLoad){
+	getRawHtml(url,function(data){onLoad(toLineArray(data))});
 }
 
 function toLineArray(data){
