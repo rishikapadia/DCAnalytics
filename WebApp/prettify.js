@@ -54,7 +54,7 @@ var DIVTEMPLATE='\
 				'
 
 
-gradient = {"Foothill":BLUEGRADIENT, 
+var gradient = {"Foothill":BLUEGRADIENT, 
 			"CKC":GOLDGRADIENT, 
 			"Cafe 3":GREENGRADIENT, 
 			"Crossroads":REDGRADIENT}
@@ -97,7 +97,9 @@ function generateHTML(DCSite, rating){
 
 
 function appendUserDisplayHTML(html){
-	document.getElementByID("userdisplay").html;
+	document.getElementById("userdisplay").innerHTML=html;
 }
 
-
+function analyze(mealsResults){
+	appendUserDisplayHTML(generateUserDisplayHTML(mealsResults));
+}
