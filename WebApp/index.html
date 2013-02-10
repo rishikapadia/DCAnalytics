@@ -173,12 +173,16 @@
 				}        
 				})
 
+				var html_out='<hr/><div class="span4"></div><div class="span6">'
+
 				if (best_breakfast[0]!="Closed")
-					$("#userdisplay").append("<h2>Best Breakfast: {0}</h2>".format(best_breakfast[1]))
+					html_out+=("<h2>Best Breakfast: {0}</h2>".format(best_breakfast[1]))
 				if (best_lunch[0]!="Closed")
-					$("#userdisplay").append("<h2>Best Lunch: {0}</h2>".format(best_lunch[1]))
+					html_out+=("<h2>Best Lunch: {0}</h2>".format(best_lunch[1]))
 				if (best_dinner[0]!="Closed")
-					$("#userdisplay").append("<h2>Best Dinner: {0}</h2>".format(best_dinner[1]))
+					html_out+=("<h2>Best Dinner: {0}</h2>".format(best_dinner[1]))
+
+				$("#userdisplay").append(html_out+'</div><div class="span2"></div>')
 
 				e.preventDefault();
 			})
