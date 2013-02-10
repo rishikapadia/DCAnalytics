@@ -33,7 +33,7 @@ Function Rating(foodGroup, prefs){
 	return result;
 }
 
-//meal is 
+//What is meal type?
 Function mealRating(meal, foodgroup, prefs){
 	AllResults = Rating(foodgroups,prefs);
 	for (site in foodgroup.keys){
