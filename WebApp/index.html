@@ -148,9 +148,38 @@
 			$("#analyze_btn").click(function(e){
 				$("#preferences").hide();
 				$("#userdisplay").show();
-				$("#userdisplay").append("<h2>Best Breakfast:</h2>")
-				$("#userdisplay").append("<h2>Best Lunch:</h2>")
-				$("#userdisplay").append("<h2>Best Dinner:</h2>")
+
+				var best_breakfast=[-999,"None"];
+				var best_lunch=[-999,"None"];
+				var best_dinner=[-999,"None"];
+
+				$(".dcInfo").each(function(i,v){
+				curr=$($(v).children()[0]).children()[0].innerHTML.substr(11);
+				currb=$($($(v).children()[3]).children().children().children()[1]).children()[0].innerHTML
+				currl=$($($(v).children()[2]).children().children().children()[1]).children()[0].innerHTML
+				currd=$($($(v).children()[1]).children().children().children()[1]).children()[0].innerHTML
+
+				if (currb >= best_breakfast){
+				best_breakfast[0]=currb
+				best_breakfast[1]=curr
+				}
+				if (currl >= best_lunch){
+				best_lunch[0]=currl
+				best_lunch[1]=curr
+				}
+				if (currd >= best_dinner){
+				best_dinner[0]=currd
+				best_dinner[1]=curr
+				}        
+				})
+
+				if (best_breakfast[0]!="Closed")
+					$("#userdisplay").append("<h2>Best Breakfast: {0}</h2>".format(best_breakfast[1]))
+				if (best_lunch[0]!="Closed")
+					$("#userdisplay").append("<h2>Best Lunch: {0}</h2>".format(best_lunch[1]))
+				if (best_dinner[0]!="Closed")
+					$("#userdisplay").append("<h2>Best Dinner: {0}</h2>".format(best_dinner[1]))
+
 				e.preventDefault();
 			})
 			$("#edit_btn").click(function(e){
