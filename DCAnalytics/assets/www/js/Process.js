@@ -1,7 +1,7 @@
 // Rishi Kapadia & Robert 
 // 2-9-13
 
-Function Magnitude(foodGroup, prefs){
+Function Rating(foodGroup, prefs){
 
 	var result == {};  
 		// dictionary of dictionaries to contain ratings for each site/mealtime
@@ -23,13 +23,23 @@ Function Magnitude(foodGroup, prefs){
 				items++;
 			}
 		}
-		result[site][mealTime] /= resultMath.sqrt(items) //determine projection
-		//actual rating
+		if(items = 0){
+			result[site][mealTime] = "Closed"
+		}
+		result[site][mealTime] /= resultMath.sqrt(items); //determine projection
+		result[site][mealTime]/= (items*5/resultMath.sqrt(items)) * 5; //actual rating
 			//dividing by vector magnitude
 	}
 	return result;
 }
 
+//meal is 
+Function mealRating(meal, foodgroup, prefs){
+	AllResults = Rating(foodgroups,prefs);
+	for (site in foodgroup.keys){
+		//print file.
+	}
+}
 
 
 /* OUTPUT
