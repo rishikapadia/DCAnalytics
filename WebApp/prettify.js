@@ -37,7 +37,7 @@ var REDGRADIENT="\
 				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00dc9a', endColorstr='#ff2503',GradientType=0 ); /* IE6-9 */\
 				"
 var DIVTEMPLATE='\
-				<div style="{1}width:50%;height:5em;color:black;border:1px solid gray; border-radius:15px; background-color:#ff0000;position:relative; vertical-align:middle;">\
+				<div class="dcInfo" style="{1}width:50%;height:5em;color:black;border:1px solid gray; border-radius:15px; background-color:#ff0000;position:relative; vertical-align:middle;">\
 				<div style="width:35%;float:left;">\
 				<h1>\
 				&nbsp {0}\
