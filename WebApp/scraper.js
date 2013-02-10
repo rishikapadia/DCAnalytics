@@ -1,11 +1,19 @@
 var DCURL="http://services.housing.berkeley.edu/FoodPro/dining/static/todaysentrees.asp"
 
 // where all the magic happens!
+var parsed;
 function parserWrapper(data){
-	var parsed = parser(data);
+	parsed = parser(data);
 	var all_food_list = allFood(parsed);
-	var pref_list = code_name(all_food_list);
-	var rating_list = rating(parsed, pref_list); // work with this for UI
+	//var pref_list = code_name(all_food_list);
+        populate(all_food_list); 
+	//var rating_list = rating(parsed, pref_list); // work with this for UI
+}
+
+function submit(){
+	pref_list = save();
+        var rating_list = rating(parsed, pref_list);
+
 }
 
 
